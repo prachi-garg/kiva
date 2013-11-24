@@ -1,0 +1,12 @@
+trigger newPartnerTrigger on Lead (after insert) {
+    
+   Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+   for (Lead lead : Trigger.new){
+       String emailAddr = [select Email from User where Id = :lead.OwnerId].Email;
+       String[] toAddresses = new String[] {emailAddr};
+       mail.setToAddresses(toAddresses);
+       mail.setSubject('New Partner created');
+       mail.setPlainTextBody('New Partner created with Id: ' + lead.Id__c + ' and name: ' + lead.Name__c);
+       Messaging.sendEmail(new Messaging.SingleEmailMessage[] { mail });                    
+   }
+}
