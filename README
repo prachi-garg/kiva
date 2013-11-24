@@ -1,0 +1,7 @@
+Kiva Service
+-------------
+1) Gets a listing of Kiva Partners from the Kiva API.
+2) Imports partner data into a Salesforce instance one at a time. (Note: Only imports id, name and status) 
+3) After each partner is created in Salesforce, an e-mail is sent that indicates the lead or account has been created via 
+Salesforce after insert Trigger
+   
